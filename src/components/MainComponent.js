@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { Navbar, NavbarBrand } from 'reactstrap';
+import {Redirect, Switch, Route } from 'react-router-dom'
 
 import Menu from "./MenuComponent";
 import DishDetail from "./DishDetailComponent";
 import Header from "./HeaderComponent";
-import Footer from "./FooterComponent"
+import Footer from "./FooterComponent";
+import Home from "./HomeComponent";
 
-import {DISHES} from "../shared/dishes"
+import {DISHES} from "../shared/dishes";
 
 class Main extends Component {
   constructor(props){
@@ -26,11 +28,22 @@ class Main extends Component {
   }
   
   render() {
+
+    const HomePage = () => {
+      return(
+          <Home 
+          />
+      );
+    }
+
     return (
       <div>
         <Header/>
-        <Menu dishes={this.state.dishes} onDishClick={this.onDishViewClick}/>
-        <DishDetail dish={this.state.dishes.filter(dish => dish.id === this.state.selectedDishId)[0]} />
+        <Switch>
+          <Route path="/home" component={Home}/>
+          <Route exact path="/menu" component={()=><Menu dishes={this.state.dishes}/>}/>
+          <Redirect to="/home"/>
+        </Switch>
         <Footer />
       </div>
     );

@@ -10,8 +10,8 @@ import { Card,
 
 
 
-const renderComments = (dish) =>{
-    const comments = dish.comments.map( (comment) => {
+const renderComments = (comments) =>{
+    const commentsViews = comments.map( (comment) => {
         return(
             <div>
                 <p>{comment.comment}</p>
@@ -20,7 +20,7 @@ const renderComments = (dish) =>{
             </div>
         );
     });
-    return comments;
+    return commentsViews;
 }
 
 export default function DishDetailComponent(props) {
@@ -41,7 +41,7 @@ export default function DishDetailComponent(props) {
             </div>
             <div className="col-md-5 col-12 m-1">
                 <h4>Comments</h4>
-                {renderComments(props.dish)}
+                {renderComments(props.comments)}
             </div>
         </div>
     </div>

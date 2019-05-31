@@ -43,7 +43,8 @@ export default function DishDetailComponent(props) {
             <div className="col-md-5 col-12 m-1">
                 <h4>Comments</h4>
                 {renderComments(props.comments)}
-                <Comment/>
+                <Comment addComment={props.addComment}
+                        dishId= {props.dish.id}/>
             </div>
         </div>
     </div>

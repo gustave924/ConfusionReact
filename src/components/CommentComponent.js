@@ -26,7 +26,8 @@ class Comment extends Component {
     }
 
     onSubmit = (values) => {
-        alert('Current State is: ' + JSON.stringify(values));
+        //alert('Current State is: ' + JSON.stringify(values));
+        this.props.addComment(this.props.dishId, values.rating, values.name , values.comment);
     }
 
     render() {

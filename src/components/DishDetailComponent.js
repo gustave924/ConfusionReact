@@ -7,6 +7,7 @@ import { Card,
     CardImgOverlay,
     CardBody } from 'reactstrap';
 
+import Comment from "./CommentComponent";
 
 
 
@@ -42,6 +43,7 @@ export default function DishDetailComponent(props) {
             <div className="col-md-5 col-12 m-1">
                 <h4>Comments</h4>
                 {renderComments(props.comments)}
+                <Comment/>
             </div>
         </div>
     </div>

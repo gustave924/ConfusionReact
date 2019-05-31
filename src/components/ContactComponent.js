@@ -204,9 +204,7 @@ export default class ContactComponent extends Component {
                             </Col>
 
                             <Col md={{size: 3, offset: 1}}>
-                                <Control.select model=".contactType" name="contactType" 
-                                    value = {this.state.contactType}
-                                    onChange = {this.handleInputEvent}>
+                                <Control.select model=".contactType" name="contactType" >
                                     <option>Tel.</option>
                                     <option>Email</option>    
                                 </Control.select>

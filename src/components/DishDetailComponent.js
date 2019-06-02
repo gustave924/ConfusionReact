@@ -8,7 +8,7 @@ import { Card,
     CardBody } from 'reactstrap';
 
 import Comment from "./CommentComponent";
-
+import { Loading } from './LoadingComponent';
 
 
 const renderComments = (comments) =>{
@@ -28,26 +28,48 @@ export default function DishDetailComponent(props) {
     if(!props.dish){
         return null;
     }
-  return (
-    <div className="container" >
-        <div className="row">
-            <div className="col-md-5 col-12 m-1">
-                <Card >
-                    <CardImg width="100%" top src={props.dish.image} alt={props.dish.name} />
-                    <CardBody>
-                        <CardTitle>{props.dish.name}</CardTitle>
-                        <CardText>{props.dish.description}</CardText>
-                    </CardBody>
-                </Card>
+        
+    if (props.isLoading) {
+        return(
+            <div className="container">
+                <div className="row">            
+                    <Loading />
+                </div>
             </div>
-            <div className="col-md-5 col-12 m-1">
-                <h4>Comments</h4>
-                {renderComments(props.comments)}
-                <Comment addComment={props.addComment}
-                        dishId= {props.dish.id}/>
+        );
+    }
+    else if (props.errMess) {
+        return(
+            <div className="container">
+                <div className="row">            
+                    <h4>{props.errMess}</h4>
+                </div>
             </div>
-        </div>
-    </div>
-  )
+        );
+    }
+    else if (props.dish != null) {
+        return (
+            <div className="container" >
+                <div className="row">
+                    <div className="col-md-5 col-12 m-1">
+                        <Card >
+                            <CardImg width="100%" top src={props.dish.image} alt={props.dish.name} />
+                            <CardBody>
+                                <CardTitle>{props.dish.name}</CardTitle>
+                                <CardText>{props.dish.description}</CardText>
+                            </CardBody>
+                        </Card>
+                    </div>
+                    <div className="col-md-5 col-12 m-1">
+                        <h4>Comments</h4>
+                        {renderComments(props.comments)}
+                        <Comment addComment={props.addComment}
+                                dishId= {props.dish.id}/>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+       
 }
 

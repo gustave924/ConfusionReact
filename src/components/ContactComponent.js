@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Breadcrumb, BreadcrumbItem,
     Button, Row, Col, Label } from 'reactstrap';
-import { Control, LocalForm, Errors } from 'react-redux-form';
+import { Control, Form, Errors, actions } from 'react-redux-form';
 import { Link } from 'react-router-dom';
 
 
@@ -48,6 +48,7 @@ export default class ContactComponent extends Component {
         //event.preventDefault();
         console.log('Current State is: ' + JSON.stringify(values));
         alert('Current State is: ' + JSON.stringify(values));
+        this.props.resetFeedbackForm();
     }
 
     
@@ -105,7 +106,7 @@ export default class ContactComponent extends Component {
                     <h1>Send Us Your Feedback</h1>
                 </div>
                 <div className="col-12 col-md-9">
-                    <LocalForm onSubmit={(values) => this.handleSubmit(values)}>
+                    <Form model="feedback" onSubmit={(values) => this.handleSubmit(values)}>
                         <Row className="form-group">
                             <Label htmlFor="firstname" md={2}>First Name</Label>
                             <Col md={10}>
@@ -225,7 +226,7 @@ export default class ContactComponent extends Component {
                                 </Button>
                             </Col>
                         </Row>
-                    </LocalForm>
+                    </Form>
                 </div>
             </div>
         </div>

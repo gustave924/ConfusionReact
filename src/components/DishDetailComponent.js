@@ -9,6 +9,7 @@ import { Card,
 
 import Comment from "./CommentComponent";
 import { Loading } from './LoadingComponent';
+import { baseUrl } from '../shared/baseUrl';
 
 
 const renderComments = (comments) =>{
@@ -53,7 +54,7 @@ export default function DishDetailComponent(props) {
                 <div className="row">
                     <div className="col-md-5 col-12 m-1">
                         <Card >
-                            <CardImg width="100%" top src={props.dish.image} alt={props.dish.name} />
+                            <CardImg width="100%" top src={baseUrl + props.dish.image} alt={props.dish.name} />
                             <CardBody>
                                 <CardTitle>{props.dish.name}</CardTitle>
                                 <CardText>{props.dish.description}</CardText>

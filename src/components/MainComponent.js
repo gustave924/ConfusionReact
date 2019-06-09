@@ -3,7 +3,7 @@ import { Navbar, NavbarBrand } from 'reactstrap';
 import {Redirect, Switch, Route, withRouter } from 'react-router-dom';
 import { connect } from "react-redux";
 import { actions } from "react-redux-form";
-import { addComment, fetchDishes, fetchComments, fetchPromos } from '../redux/ActionCreators';
+import { addComment, fetchDishes, fetchComments, fetchPromos, postComment } from '../redux/ActionCreators';
 import Menu from "./MenuComponent";
 import DishDetail from "./DishDetailComponent";
 import Header from "./HeaderComponent";
@@ -24,7 +24,8 @@ const mapDispatchToProps = (dispatch) => ({
   fetchDishes: () => { dispatch(fetchDishes())},
   resetForm: () =>{ dispatch(actions.reset("feedback")) },
   fetchComments: () => { dispatch(fetchComments()) },
-  fetchPromos: () => { dispatch(fetchPromos()) }
+  fetchPromos: () => { dispatch(fetchPromos()) },
+  postComment: (dishId, rating, author, comment) => { dispatch(postComment(dishId, rating, author, comment)) }
 })
 class Main extends Component {
   constructor(props){
@@ -59,7 +60,7 @@ class Main extends Component {
             dishesErrMess={this.props.dishes.errMess}
             promotion={this.props.promotions.promotions.filter((promo) => promo.featured)[0]}
             promotionLoading = {this.props.promotions.isLoading}
-            promotionErrMess = {this.props.promotions.errMes}
+            promotionErrMess = {this.props.promotions.errMess}
             leader={this.props.leaders.filter((leader) => leader.featured)[0]}
         />
       );
@@ -73,7 +74,7 @@ class Main extends Component {
             comments={this.props.comments.comments.filter((comment) => comment.dishId === parseInt(match.params.dishId,10))}
             commentLoading = {this.props.comments.isLoading}
             commentErrMess = {this.props.comments.errMess}
-            addComment={this.props.addComment}
+            addComment={this.props.postComment}
           />
       );
     }

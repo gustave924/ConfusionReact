@@ -1,4 +1,4 @@
-import { createStore, combineReducers, applyMiddleware } from "redux";
+import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import { createForms } from "react-redux-form";
 import { initalFeedback } from "./form.js";
 import { Leaders } from "./leaders";
@@ -9,6 +9,8 @@ import thunk from 'redux-thunk';
  
 export const configureStore = () =>{
 
+    const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
     const Store = createStore(
         combineReducers({
             leaders: Leaders, 
@@ -16,8 +18,8 @@ export const configureStore = () =>{
             comments: Comments, 
             dishes: Dishes,
             ...createForms({feedback: initalFeedback})
-        }),
-        applyMiddleware(thunk)
+        }),composeEnhancers(
+        applyMiddleware(thunk))
     );
     
     return Store;

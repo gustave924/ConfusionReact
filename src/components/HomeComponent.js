@@ -5,15 +5,18 @@ import { Loading } from './LoadingComponent';
 import { baseUrl } from '../shared/baseUrl';
 
 function RenderCard({item, isLoading, errMess}){
+    console.log(errMess)
     if (isLoading) {
         return(
                 <Loading />
         );
     }else if (errMess) {
+        console.log("in error");
         return(
                 <h4>{errMess}</h4>
         );
     }else{
+        console.log("In card render");
         return(
             <Card>
                 <CardImg src={baseUrl + item.image} alt={item.description}/>
@@ -28,7 +31,6 @@ function RenderCard({item, isLoading, errMess}){
 }
 
 function Home(props){
-    console.log(props.leader)
     return(
         <div className="container">
             <div className="row align-item-start">
@@ -36,7 +38,7 @@ function Home(props){
                     <RenderCard item={props.dish} isLoading={props.dishesLoading} errMess={props.dishesErrMess}  />
                 </div>
                 <div className="col-12 col-md m-1">
-                    <RenderCard item={props.promotion} isLoading={props.promotionLoading} errMess={props.promoErrMess} />
+                    <RenderCard item={props.promotion} isLoading={props.promotionLoading} errMess={props.promotionErrMess} />
                 </div>
                 <div className="col-12 col-md m-1">
                     <RenderCard item={props.leader} />

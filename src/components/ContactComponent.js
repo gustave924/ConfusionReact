@@ -47,8 +47,16 @@ export default class ContactComponent extends Component {
     handleSubmit = (values) => {
         //event.preventDefault();
         console.log('Current State is: ' + JSON.stringify(values));
-        alert('Current State is: ' + JSON.stringify(values));
+       //alert(JSON.stringify(values));
+       console.log(this.props)
         this.props.resetFeedbackForm();
+        this.props.postFeedback(values.firstname,
+                                    values.lastname, 
+                                    values.telnum,
+                                    values.email,
+                                    values.message,
+                                    values.agree,
+                                    values.contactType);
     }
 
     
